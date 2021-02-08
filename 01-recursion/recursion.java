@@ -11,8 +11,18 @@ public class recursion {
     }
   }
 
+  public static String reverse (String s) {
+    if(s.length() == 1) {
+      return s;
+    }
+    else {
+      int l = s.length()-1;
+      return s.charAt(l) + reverse(s.substring(0,l));
+    }
+  }
+
   public static void main(String[] args) {
-    // System.out.println( newton(6.0, 1.0) );
+    System.out.println( reverse("racecar") );
   }
 
 }
