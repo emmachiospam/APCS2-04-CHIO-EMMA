@@ -21,8 +21,38 @@ public class recursion {
     }
   }
 
+  public static long countNoDoubleLetterWords(int length,String word) {
+    if(length == 0) {
+      return 1;
+    }
+    else {
+      //looping through all the letters in the array
+      long result = 0;
+      for(int i = 'a'; i <= 'z'; i++) {
+        char add = (char)i;
+        int l = word.length()-1;
+        //only adding it if the letter at the end if different from the char being added
+        if(word.length() > 0 && add == word.charAt(l)) {
+        }
+        else {
+          result = result + countNoDoubleLetterWords(length-1, word + add);
+        }
+      }
+      return result;
+    }
+  }
+
+  public static double sqrt(double n) {
+    if(n == 0) {
+      return 0;
+    }
+    else{
+      return newton(n, 1.0);
+    }
+  }
+
   public static void main(String[] args) {
-    System.out.println( reverse("racecar") );
+    System.out.println( countNoDoubleLetterWords(2, "") );
   }
 
 }
