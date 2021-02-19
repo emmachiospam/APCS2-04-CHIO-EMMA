@@ -78,9 +78,9 @@ public class QueenBoard {
         if(board[i][j] == -1) {
           result = result + "Q ";
         }
-        // else if(board[i][j] > 0) {
-        //   result = result + "X ";
-        //   // result = result + board[i][j] + " ";
+        // else if(board[i][j] >= 0) {
+        //   // result = result + "X ";
+        //   result = result + board[i][j] + " ";
         // }
         else {
           result = result + "_ ";
@@ -89,9 +89,9 @@ public class QueenBoard {
       if(board[i][size-1] == -1) {
         result = result + "Q \n";
       }
-      // else if(board[i][size-1] > 0) {
-      //   result = result + "X \n";
-      //   // result = result + board[i][size-1] + "\n";
+      // else if(board[i][size-1] >= 0) {
+      //   // result = result + "X \n";
+      //   result = result + board[i][size-1] + "\n";
       // }
       else {
         result = result + "_ \n";
@@ -108,6 +108,9 @@ public class QueenBoard {
     int size = board.length;
     if(column == size) {
       return true;
+    }
+    else if (column == 0 && row == size) {
+      return false;
     }
     else if(row == size) {
       int location = findQueen(board, column);
