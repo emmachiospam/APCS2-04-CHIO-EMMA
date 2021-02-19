@@ -51,6 +51,21 @@ public class QueenBoard {
     }
   }
 
+  public int[][] board(){
+    return board;
+  }
+
+  public int findQueen(int[][] board, int c) {
+    int size = board.length;
+    int row = 0;
+    for(int i = 0; i < size; i++) {
+      if(board[i][c] == -1) {
+        row = i;
+      }
+    }
+    return row;
+  }
+
   public QueenBoard(int size) {
     board = new int[size][size];
   }
@@ -63,10 +78,10 @@ public class QueenBoard {
         if(board[i][j] == -1) {
           result = result + "Q ";
         }
-        else if(board[i][j] > 0) {
-          result = result + "X ";
-          // result = result + board[i][j] + " ";
-        }
+        // else if(board[i][j] > 0) {
+        //   result = result + "X ";
+        //   // result = result + board[i][j] + " ";
+        // }
         else {
           result = result + "_ ";
         }
@@ -74,10 +89,10 @@ public class QueenBoard {
       if(board[i][size-1] == -1) {
         result = result + "Q \n";
       }
-      else if(board[i][size-1] > 0) {
-        result = result + "X \n";
-        // result = result + board[i][size-1] + "\n";
-      }
+      // else if(board[i][size-1] > 0) {
+      //   result = result + "X \n";
+      //   // result = result + board[i][size-1] + "\n";
+      // }
       else {
         result = result + "_ \n";
       }
@@ -85,29 +100,44 @@ public class QueenBoard {
     return result;
   }
 
-  // public boolean solve() {
-  //   return solve(0, 0, 0);
-  // }
-  //
-  // public boolean solve(int column, int row, int pr) {
-  //   int size = board.length;
-  //   if((row == size - 1 && column == size - 1) && addQueen(column, row) == false) {
-  //     return false;
-  //   }
-  //   else if((row == size - 1 && column == size - 1) && addQueen(column, row) == true) {
-  //     return true;
-  //   }
-  //   else {
-  //     if(addQueen(column, row)) {
-  //       if(solve(column + 1, 0, row)) {
-  //         return true;
-  //       }
-  //       else {
-  //         return false;
-  //       }
-  //     }
-  //
-  //   }
-  // }
+  public boolean solve() {
+    return solve(0, 0);
+  }
+
+  public boolean solve(int column, int row) {
+    int size = board.length;
+    if(column == size) {
+      return true;
+    }
+    else if(row == size) {
+      int location = findQueen(board, column);
+      removeQueen(column - 1, location);
+      if(solve(column - 1, location + 1)) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      if(addQueen(column, row)) {
+        if(solve(column + 1, 0)) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+      else {
+        removeQueen(column, row);
+        if(solve(column, row + 1)) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      }
+    }
+  }
 
 }
