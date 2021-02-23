@@ -5,7 +5,7 @@ public class QueenBoard {
     board = new int[size][size];
   }
 
-  private boolean addQueen(int c, int r) {
+  public boolean addQueen(int c, int r) {
     int size = board.length;
     //the queen can only be added if the spot is nonthreatened and not occupied by another queen
     if (board[r][c] == 0) {
@@ -37,7 +37,7 @@ public class QueenBoard {
     }
   }
 
-  private void removeQueen(int c, int r) {
+  public void removeQueen(int c, int r) {
     int size = board.length;
     if (board[r][c] == -1) {
       //resets the queens spot to an empty spot
@@ -65,21 +65,8 @@ public class QueenBoard {
     }
   }
 
-  private int[][] board(){
+  public int[][] board(){
     return board;
-  }
-
-  //scans through the board at the given column to find where the row the queen is in
-  //in the previous column
-  public int findQueen(int c) {
-    int size = board.length;
-    int row = 0;
-    for(int i = 0; i < size; i++) {
-      if(board[i][c] == -1) {
-        row = i;
-      }
-    }
-    return row;
   }
 
   public boolean empty() {
@@ -102,7 +89,8 @@ public class QueenBoard {
         if(board[i][j] == -1) {
           result = result + "Q ";
         }
-        // else if(board[i][j] >= 0) {
+        // else
+        // if(board[i][j] >= 0) {
         //   // result = result + "X ";
         //   result = result + board[i][j] + " ";
         // }
@@ -113,7 +101,8 @@ public class QueenBoard {
       if(board[i][size-1] == -1) {
         result = result + "Q \n";
       }
-      // else if(board[i][size-1] >= 0) {
+      // else
+      // if(board[i][size-1] >= 0) {
       //   // result = result + "X \n";
       //   result = result + board[i][size-1] + "\n";
       // }
@@ -139,45 +128,50 @@ public class QueenBoard {
     if(column == size) {
       return true;
     }
-    //if the code reaches the last row of the first column and there is still no solution,
-    //then the situation is not possible
-    else if (column == 0 && row == size) {
+    else {
+      for(int i = 0; i < size; i++) {
+        if(addQueen(column, i)) {
+          if (solve(column + 1, 0)) {
+            return true;
+          }
+          else {
+            removeQueen(column, i);
+          }
+        }
+      }
       return false;
     }
-    //if it hits the last row of any other column, it should go back one column
-    //and try another solution where the previous queen's position has moved
-    else if(row == size) {
-      int location = findQueen(column);
-      removeQueen(column - 1, location);
-      if(solve(column - 1, location + 1)) {
-        return true;
-      }
-      else {
-        return false;
-      }
+  }
+
+
+  public int countSolutions() {
+    int size = board.length;
+    if(size == 0) {
+      return 0;
+    }
+    if(empty() == false) {
+      throw new IllegalArgumentException("the board cannot start with non-zero values");
     }
     else {
-      if(addQueen(column, row)) {
-        //if the queen can be added, then go to the next column and start at 0
-        if(solve(column + 1, 0)) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
-      else {
-        //if the queen cannot be added, then remove the queen that was added and start at
-        //the next row
-        removeQueen(column, row);
-        if(solve(column, row + 1)) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
+      return countSolutions(0);
     }
   }
+
+  public int countSolutions(int column) {
+    int size = board.length;
+    int total = 0;
+    //if the code is able to get to the nth column, it means that it is possible
+    if(column == size) {
+      return 1;
+    }
+    for(int i = 0; i < size; i++) {
+      if(addQueen(column, i)) {
+        total += countSolutions(column + 1);
+        removeQueen(column, i);
+      }
+    }
+    return total;
+  }
+
 
 }
