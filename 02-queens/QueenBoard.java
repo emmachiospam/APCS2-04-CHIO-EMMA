@@ -5,7 +5,7 @@ public class QueenBoard {
     board = new int[size][size];
   }
 
-  public boolean addQueen(int c, int r) {
+  private boolean addQueen(int c, int r) {
     int size = board.length;
     //the queen can only be added if the spot is nonthreatened and not occupied by another queen
     if (board[r][c] == 0) {
@@ -37,7 +37,7 @@ public class QueenBoard {
     }
   }
 
-  public void removeQueen(int c, int r) {
+  private void removeQueen(int c, int r) {
     int size = board.length;
     if (board[r][c] == -1) {
       //resets the queens spot to an empty spot
@@ -69,7 +69,7 @@ public class QueenBoard {
     return board;
   }
 
-  public boolean empty() {
+  private boolean empty() {
     int size = board.length;
     for(int i = 0; i < size; i++) {
       for(int j = 0; j < size; j++) {
