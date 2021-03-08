@@ -76,7 +76,7 @@ public class USACO {
   }
 
 
-  public static int silver(String filename) throws FileNotFoundException{
+  public static long silver(String filename) throws FileNotFoundException{
     File fileName = new File(filename);
     Scanner n = new Scanner(fileName);
     int row = 1;
