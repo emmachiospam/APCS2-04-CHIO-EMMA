@@ -2,14 +2,25 @@ import java.util.*;
 import java.io.*;
 public class Preliminary {
 
+  public static void main(String args[]) {
+    int[] ary = {2,10,15,23,0,5};
+    System.out.println(quickselect(ary, 0));
+    System.out.println(quickselect(ary, 1));
+    System.out.println(quickselect(ary, 2));
+    System.out.println(quickselect(ary, 3));
+    System.out.println(quickselect(ary, 4));
+    System.out.println(quickselect(ary, 5));
+  }
+
   public static int partition(int[] data, int start, int end) {
     Random r = new Random();
-    int index = Math.abs(r.nextInt() % (end + 1));
+    int difference = Math.abs(end - start);
+    int index = Math.abs(r.nextInt() % (difference + 1)) + start;
     int end1 = end;
     int value = data[index];
-    data[index] = data[0];
-    data[0] = value;
-    int current = 1;
+    data[index] = data[start];
+    data[start] = value;
+    int current = 1 + start;
     while(current < end1) {
       if(data[current] > value) {
         int t = data[end1];
@@ -22,23 +33,41 @@ public class Preliminary {
       }
     }
     if ((data[current] < value) || data[current] == value && r.nextBoolean()){
-      data[0] = data[current];
+      data[start] = data[current];
       data[current] = value;
       return current;
     }
     else {
-      data[0] = data[current-1];
+      data[start] = data[current-1];
       data[current-1] = value;
       return current-1;
     }
   }
-  //
-  // public static String toString(int[] data) {
-  //   String result = "";
-  //   for(int i = 0; i < data.length; i++) {
-  //     result = result + data[i] + " ";
-  //   }
-  //   return result;
-  // }
+
+  public static String toString(int[] data) {
+    String result = "";
+    for(int i = 0; i < data.length; i++) {
+      result = result + data[i] + " ";
+    }
+    return result;
+  }
+
+  public static int quickselect(int[] data, int k) {
+    int start = 0;
+    int end = data.length-1;
+    int current = partition(data, start, end);
+    while(current != k) {
+      if(current < k) {
+        start = current + 1;
+        end = data.length - 1;
+      }
+      else if (current > k){
+        start = 0;
+        end = current-1;
+      }
+      current = partition(data, start, end);
+    }
+    return data[k];
+  }
 
 }
