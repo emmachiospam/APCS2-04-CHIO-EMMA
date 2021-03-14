@@ -2,16 +2,6 @@ import java.util.*;
 import java.io.*;
 public class Preliminary {
 
-  public static void main(String args[]) {
-    int[] ary = {2,10,15,23,0,5};
-    System.out.println(quickselect(ary, 0));
-    System.out.println(quickselect(ary, 1));
-    System.out.println(quickselect(ary, 2));
-    System.out.println(quickselect(ary, 3));
-    System.out.println(quickselect(ary, 4));
-    System.out.println(quickselect(ary, 5));
-  }
-
   public static int partition(int[] data, int start, int end) {
     Random r = new Random();
     int difference = Math.abs(end - start);
@@ -52,22 +42,22 @@ public class Preliminary {
     return result;
   }
 
-  public static int quickselect(int[] data, int k) {
-    int start = 0;
-    int end = data.length-1;
-    int current = partition(data, start, end);
-    while(current != k) {
-      if(current < k) {
-        start = current + 1;
-        end = data.length - 1;
-      }
-      else if (current > k){
-        start = 0;
-        end = current-1;
-      }
-      current = partition(data, start, end);
-    }
-    return data[k];
-  }
+  // public static int quickselect(int[] data, int k) {
+  //   int start = 0;
+  //   int end = data.length-1;
+  //   int current = partition(data, start, end);
+  //   while(current != k) {
+  //     if(current < k) {
+  //       start = current + 1;
+  //       end = data.length - 1;
+  //     }
+  //     else if (current > k){
+  //       start = 0;
+  //       end = current-1;
+  //     }
+  //     current = partition(data, start, end);
+  //   }
+  //   return data[k];
+  // }
 
 }
