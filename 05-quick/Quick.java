@@ -60,4 +60,16 @@ public class Quick {
     return data[k];
   }
 
+  public static void quicksort(int[] data) {
+    quicksort(data, 0, data.length-1);
+  }
+
+  public static void quicksort(int[] data, int start, int end) {
+    if(start < end) {
+      int p = partition(data, start, end);
+      quicksort(data, start, p - 1);
+      quicksort(data, p+1, end);
+    }
+  }
+
 }
