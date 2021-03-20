@@ -29,10 +29,10 @@ public class MazeGenerator {
   }
 
   public static void generate(char[][] maze) {
-    generate(maze, 1, 1);
+    generate(maze, 0, 0, 1, 1);
   }
 
-  public static void generate(char[][] maze, int row, int column) {
+  public static void generate(char[][] maze, int x, int y, int row, int column) {
     maze[row][column] = ' ';
     int[] order = new int[4];
     for(int i = 0; i < 4; i++) {
@@ -51,28 +51,28 @@ public class MazeGenerator {
         if(howManyAround(maze, row, column + 1) >= 2 ) {
         }
         else {
-          generate(maze, row, column + 1);
+          generate(maze, 0, 0, row, column + 1);
         }
       }
       if(random == 1) {
         if(howManyAround(maze, row + 1, column) >= 2) {
         }
         else {
-          generate(maze, row + 1, column);
+          generate(maze, 0, 0, row + 1, column);
         }
       }
       if(random == 2) {
         if(howManyAround(maze, row, column - 1) >= 2) {
         }
         else {
-          generate(maze, row, column - 1);
+          generate(maze, 0, 0, row, column - 1);
         }
       }
       if (random == 3){
         if(howManyAround(maze, row - 1, column) >= 2) {
         }
         else{
-          generate(maze, row - 1, column);
+          generate(maze, 0, 0, row - 1, column);
         }
       }
     }
