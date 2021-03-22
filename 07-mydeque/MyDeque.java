@@ -21,7 +21,7 @@ public class MyDeque<E> {
   }
 
   @SuppressWarnings("unchecked")
-  public void resize() {
+  private void resize() {
     E[] temp = (E[])new Object[size + size];
     int tempIndex = size/2;
     int index = start;
@@ -66,7 +66,6 @@ public class MyDeque<E> {
     }
     result += "}";
     return result;
-    // return Arrays.toString(data)
   }
 
   public void addFirst(E element) {
