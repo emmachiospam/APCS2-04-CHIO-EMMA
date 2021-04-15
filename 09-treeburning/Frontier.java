@@ -16,7 +16,7 @@ public class Frontier {
   }
 
   public void add(int[] location) {
-    frontier.addFirst(location);
+    frontier.addLast(location);
   }
 
 }
