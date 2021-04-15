@@ -15,4 +15,8 @@ public class Frontier {
     return frontier.removeFirst();
   }
 
+  public void add(int[] location) {
+    frontier.addFirst(location);
+  }
+
 }
