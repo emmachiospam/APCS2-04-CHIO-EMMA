@@ -85,6 +85,13 @@ public class BurnTrees{
           toAdd[1] = col + 1;
           frontier.add(toAdd);
         }
+        if(inRange(row, col - 1) && map[row][col - 1] == TREE) {
+          map[row][col - 1] = FIRE;
+          int[] toAdd = new int[2];
+          toAdd[0] = row;
+          toAdd[1] = col - 1;
+          frontier.add(toAdd);
+        }
         map[row][col] = ASH;
       }
       ticks++;
