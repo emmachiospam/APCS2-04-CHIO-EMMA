@@ -76,7 +76,7 @@ public class MyHeap{
   }
 
   public static void main(String args[]) {
-    int[] test = {400,100,700,50,550,300,600};
+    int[] test = {10, 20, 4, 1, 63, 25, 73, 16};
     System.out.println(Arrays.toString(test));
     // buildHeap(test);
     // System.out.println(Arrays.toString(test));
