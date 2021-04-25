@@ -71,7 +71,6 @@ public class MyHeap{
 
   public static void heapsort(int[] data) {
     buildHeap(data);
-    System.out.println(Arrays.toString(data));
     for(int i = data.length; i > 0; i--) {
       remove(data, i);
     }
