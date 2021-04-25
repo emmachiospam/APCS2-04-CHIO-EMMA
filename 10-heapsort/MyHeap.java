@@ -76,23 +76,5 @@ public class MyHeap{
     }
   }
 
-  public static void main(String[] args) {
-    int[] test = new int[10000000];
-    for(int i = 0; i < 10000000; i++) {
-      int min = 0;
-      int max = 1000000;
-      int random_int = (int)Math.floor(Math.random()*(max-min+1)+min);
-      test[i] = random_int;
-    }
-    int[] check = test.clone();
-    Arrays.sort(check);
-    heapsort(test);
-    if(Arrays.equals(check, test)) {
-      System.out.println("correct");
-    }
-    else {
-      System.out.println("wrong");
-    }
-  }
 
 }
