@@ -71,5 +71,20 @@ public class Cow {
       }
   }
   
+  void turn(float angle) {
+     float ca = atan2(dy,dx);
+     float m = dist(0,0, dx, dy);
+     ca = ca + radians(angle);
+     dx = cos(ca) * m;
+     dy = sin(ca) * m;
+  }
+  
+  void changeSpeed(float dv) {
+    float ca = atan2(dy,dx);
+    float m = dist(0,0, dx, dy);
+    m = m + dv;
+    dx = cos(ca) * m;
+    dy = sin(ca) * m;
+  }
 
 }

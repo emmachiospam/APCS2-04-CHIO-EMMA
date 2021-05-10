@@ -18,7 +18,7 @@ void draw() {
   text("FPS: "+frameRate+"\nCows: "+particles.size(),0,20);
 }
 
-void mousePressed() { 
+void mousePressed() {
   if(mouseButton == LEFT) {
     for(Cow c: particles) {
       c.click();
